@@ -1,0 +1,10 @@
+/.idea
+/.git
+/db_backups
+/data
+/node_modules
+/.vscode
+# /dist
+/.clinic
+.DS_Store
+.env

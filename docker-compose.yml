@@ -1,0 +1,41 @@
+version: '3.5'
+
+
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: nuxt_dev
+    container_name: nuxt_dev
+    volumes:
+    - ./frontend:/frontend
+    - /frontend/node_modules
+    environment:
+      - host=127.0.0.1
+      - port=3000
+    ports:
+      - "3000:3000"
+      - "24678:24678"
+      - "80:80"
+    command: npm run dev
+    stdin_open: true
+    tty: true
+
+    
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: nest_dev
+    container_name: nest_dev
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+    environment:
+      - host=127.0.0.1
+      - port=8000
+    ports:
+      - "8000:8000"
+    command: npm run start:dev
